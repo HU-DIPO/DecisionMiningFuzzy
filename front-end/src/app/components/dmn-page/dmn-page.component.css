@@ -1,0 +1,43 @@
+#container {
+  height: 75%;
+  width: 100%;
+}
+
+#first-container {
+  height: 100%;
+  width: 45%;
+  float: left;
+  margin-left: 2%;
+  margin-top: 2%;
+}
+
+#second-container {
+  height: 100%;
+  width: 45%;
+  float: right;
+  margin-right: 2%;
+  margin-top: 2%;
+
+}
+
+#dmn-container {
+  height: 100%;
+  border: lightgray solid;
+  overflow: scroll;
+  background-color: white;
+}
+
+#exportBtn {
+  width: 30%;
+  margin-left: 35%;
+  margin-top: 1%;
+  font-weight: bold;
+}
+
+#add-dmn {
+  width: 50%;
+  height: 30%;
+  border: lightgray solid;
+  font-size: xx-large;
+}
+

@@ -1,0 +1,61 @@
+.navbar {
+  width: 90%;
+  margin: 10px auto;
+  border-radius: 15px;
+  background-color: lightgray;
+}
+.navbar-nav > li{
+  padding-left:30px;
+  padding-right:30px;
+  font-size: 20px;
+
+}
+
+ul {
+  margin-left: auto;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: black !important;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+  color: steelblue !important;
+}
+
+.navitem {
+  border-radius: 10px;
+  background-color: steelblue;
+  font-size: 25px;
+  text-align: center;
+}
+
+.navitem a {
+  color: white;
+}
+
+.navitem a:hover{
+  background-color: lightblue;
+  color: black;
+}
+
+.navbar-brand img {
+  margin: 0px 25px;
+  height: 75px;
+}
+
+img {
+  height: 40px;
+}
+
+
+
+@media screen and (max-width: 1200px) and (min-width: 992px) {
+  ul li {
+    margin: 2px;
+    width: auto;
+  }
+}
+
+
+
+

@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  web:
+    build: ./front-end
+    ports:
+      - "4200:4200"
+    command: "npm run compose"
+  backend:
+    build: ./back-end/
+    ports: 
+      - "5000:5000"
+    depends_on: 
+        - services

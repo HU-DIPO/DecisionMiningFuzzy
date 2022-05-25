@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="mainpage">
+  <h2>Decision mining</h2>
+  <form class="form-box">
+    <div class="second-part">
+      <p>Upload your .csv file(s).</p>
+      <input type="file" id="myFile" name="filename" accept="text/csv"  onchange="this.files[0].text().then(t => (sessionStorage.setItem('words',(t.split('\n')[0].trim().split(','))))), this.files[0].text().then(t => sessionStorage.setItem('file', t)), sessionStorage.setItem('filename', this.files[0].name)"  multiple="multiple">
+    </div>
+    <div class="first-part">
+      <label for="algorithms">Select an algorithm <div class="popup" (click)="myPopup()"><i class="fa fa-question-circle-o"></i>
+        <span class="popuptext" id="myPopup">
+        <!-- <b>Fuzzy miner:</b><br>Fuzzy miner is a classification model based on the model of the Discovery of Fuzzy DMN Decision Models from Event Logs (Bazhenova, Haarmann, Ihde, Solti, & Weske, 2017). It discretises the continuous values, resulting in fuzzy terms like "low", "medium" and "high".<br>
+        <b>C4.5:</b><br>C4.5 is a decision tree model invented by R. Quinlan and implemented by INNO-195. The model represents the decision process as a tree with branches. Based on certain conditions found in the data, it branches the model. This process repeats itself until it has converged on the most specific rules possible. -->
+        </span>
+      </div></label>
+      <br/>
+      <select name="algorithms" id="algorithms">
+        <!-- <option value="DMFuzzy">DMFuzzy</option>
+        <option value="DM45">DM45</option>
+        <option value="DM45_pruned">DM45 pruned</option> -->
+      </select>
+      <label>
+        <input type="checkbox" name="normalize" id="checkbox-normalize" value=True>
+        <span>  Normalize decision table rules.</span>
+      </label>
+      <input class="run" routerLink="/second-page" type="submit" value="Next" id="button" (click)="thisFunction()">
+    </div>
+  </form>
+</div>
+
+
+
+
+

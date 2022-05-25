@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="secondpage" >
+  <div id="container" >
+  <h2>Decision mining</h2>
+    <div class="topPart">
+  <input type="text" class="dmn-name" placeholder="Name" id="title" >
+    <div class="popup" (click)="myPopup()"><i class="fa fa-question-circle-o"></i>
+      <span class="popuptext" id="myPopup"><b>Input/Output, Continue/Categoriaal:<br></b>A decision process may only have one output, yet many inputs. Columns can be marked as input, output, or be excluded all together.
+Furthermore, columns may be marked as continuous or categorical. If your column contains categories (e.g., [1, 2, 3], or [“sunny”, “windy”, “rainy”]), it is categorical. If it contains numbers in a certain range (e.g., [1, 2, 3], or [0.5, 100, 13.4]), it is continuous.</span>
+    </div>
+    </div>
+  <form class="form-box" name="colform" >
+    <div class="first-part">
+
+    </div>
+    <div class="second-part">
+      <input class="run" routerLink="/dmn-page" type="submit" value="Run algorithm" (click)="myFunction()">
+    </div>
+  </form>
+  </div>
+</div>
+

@@ -1,0 +1,23 @@
+<div id="logreg-forms">
+  <form class="form-signup">
+
+    <div class="authBlock">
+      <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Thank you for registering</h1>
+
+      <div class="formGroup" *ngIf="authService.userData as user">
+        <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+        <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+        <p class="text-center">If you can't find your email please check your spam.</p>
+      </div>
+
+      <!-- Calling SendVerificationMail() method using authService Api -->
+      <div class="formGroup">
+        <button type="button" class="btn btn-primary btn-block" (click)="authService.SendVerificationMail()">
+          <i class="fas fa-redo-alt"></i>
+          Resend Verification Email
+        </button>
+      </div>
+    </div>
+    <a routerLink="/sign-in" id="cancel_signup" class="text-center"><i class="fas fa-angle-left"></i> Back</a>
+  </form>
+</div>
