@@ -1,4 +1,4 @@
-# INNO 2021 Backend Repository
+# Decision Mining Fuzzy Backend Repository
 
 This repository can either be installed and used as a Python module or as a decision mining API.
 
