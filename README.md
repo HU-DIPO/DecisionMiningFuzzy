@@ -1,9 +1,3 @@
-# Decision Mining Fuzzy (DMFuzzy) Repository
-
-Decision Mining project built by students of the HU University of Applied Sciences Utrecht.
-
-That uses the Fuzzy Algoritme.
-
 ## Running the application
 
 ### Running full application with Docker Compose
