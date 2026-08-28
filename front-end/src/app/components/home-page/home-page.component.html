@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div id="home-page">
+  <h2>Decision mining</h2>
+    <div class="first-part">
+      <p>Welcome,<br><br>
+        Using the tools on this webapp you can analyse your decision processes. We automatically infer the rules your decision model uses based on the data you upload.
+        <br><br>The tools work by analysing your data. Your data must be a .csv-file, with its values delimited with commas (“,”). The first row should contain the column names. Each of these columns can be marked as input or output, and continuous or categorical. If you do not wish to use one of the columns in your dataset, simply press “exclude”. </p>
+      <p>These are the current tools for inferring rules.</p>
+      <div id="models" class="first-part">
+        <!-- <p>There are currently two tools for inferring rules available: Fuzzy miner and C4.5.
+          <br><br>Fuzzy miner is a classification model based on the model of the Discovery of Fuzzy DMN Decision Models from Event Logs (Bazhenova, Haarmann, Ihde, Solti, & Weske, 2017). It discretises the continuous values, resulting in fuzzy terms like "low", "medium" and "high".
+          <br><br>C4.5 is a decision tree model invented by R. Quinlan and implemented by INNO-195. The model represents the decision process as a tree with branches. Based on certain conditions found in the data, it branches the tree. This process repeats itself until it has converged on the most specific rules possible.</p> -->
+      </div>
+      <h4>To create your first dmn, click the button below.</h4>
+      <a class="nav-item nav-link" routerLink="/main-page">Create diagram</a>
+    </div>
+</div>

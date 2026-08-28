@@ -1,0 +1,10 @@
+<div id="logreg-forms">
+  <form class="form-signup">
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign up</h1>
+    <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="" #userEmail>
+    <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="" #userPwd>
+
+    <input type="button" class="btn btn-primary btn-block" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+    <a routerLink="/sign-in" id="cancel_signup" class="text-center"><i class="fas fa-angle-left"></i> Back</a>
+  </form>
+</div>

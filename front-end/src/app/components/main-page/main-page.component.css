@@ -1,0 +1,152 @@
+
+#mainpage {
+  width:50%;
+  margin:5vh auto;
+  background-color:#f3f3f3;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+#mainpage h2 {
+  text-align: center;
+}
+
+#mainpage form {
+  width: 100%;
+  max-width: 410px;
+  padding: 15px;
+  margin: auto;
+}
+
+.first-part {
+  height: 15vh;
+  text-align: center;
+  font-weight: bold;
+}
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  margin-left: -250px;
+  font-size: 12px;
+  font-weight: normal !important;
+  width: 400px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+.second-part {
+  height: 17vh;
+  margin-top: 2vh;
+  text-align: center;
+  font-weight: bold;
+}
+select {
+  display: inline-block;
+  padding: 4px 3px 5px 5px;
+  width: 150px;
+  height: 40px;
+  outline: none;
+  color: black;
+  border: 1px solid #C8BFC4;
+  border-radius: 4px;
+  box-shadow: inset 1px 1px 2px #ddd8dc;
+}
+
+#algorithms {
+  border-radius: 0
+}
+
+.first-part .run {
+  margin-top: 45px;
+  height: 35px;
+  background-color: steelblue;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.first-part select {
+  width: 100%;
+}
+
+#mainpage .form-box {
+  height: 55vh;
+}
+
+#mainpage .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+
+}
+#mainpage .form-control:focus { z-index: 2; }
+
+#mainpage .form-box input[type="email"] {
+  margin-bottom: 1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+
+}
+#mainpage .form-box input[type="password"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#mainpage .lines{
+  width:200px;
+  border:1px solid red;
+}
+
+@media screen and (max-width: 800px) and (min-width: 400px){
+  #mainpage{
+    width: 70%;
+  }
+}
+
+

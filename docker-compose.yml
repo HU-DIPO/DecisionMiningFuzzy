@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  web:
+    build: ./front-end
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    command: "npm run compose"
+  backend:
+    build: ./back-end/
+    environment:
+      - CORS_ORIGINS=http://localhost:4200,http://127.0.0.1:4200
+    ports: 
+      - "5001:5001"

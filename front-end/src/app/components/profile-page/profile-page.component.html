@@ -1,0 +1,30 @@
+
+<!-- Show user data when logged in -->
+<div *ngIf="authService.userData as user">
+  <div class='container'>
+    <h1>Profile</h1>
+    <table>
+      <tr>
+        <td>
+          <strong>Email:</strong>
+        </td>
+        <td class="wit">
+          {{user.email}}
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <strong>Password:</strong>
+        </td>
+        <td class="wit">
+          *********
+        </td>
+      </tr>
+    </table>
+    <button routerLink="/forgot-password">Change password</button>
+  </div>
+</div>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="definitions" name="definitions" namespace="http://camunda.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="10.1.0">
+  <decision id="decision" name="Dish">
+    <informationRequirement id="InformationRequirement_1ivqa7x">
+      <requiredInput href="#InputData_1ewrucr" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0hutcgt">
+      <requiredInput href="#InputData_0lm78os" />
+    </informationRequirement>
+    <decisionTable id="decisionTable">
+      <input id="input1" label="Season">
+        <inputExpression id="inputExpression1" typeRef="string">
+          <text>season</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0hmkumv" label="How many guests" camunda:inputVariable="how_many_guest">
+        <inputExpression id="LiteralExpression_0m7s53h" typeRef="integer">
+          <text>guestCount</text>
+        </inputExpression>
+      </input>
+      <output id="output1" label="Dish" name="desiredDish" typeRef="string" />
+      <rule id="row-950612891-1">
+        <inputEntry id="UnaryTests_0c1o054">
+          <text>"Fall"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lod0sz">
+          <text>&lt;= 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_065u3ym">
+          <text>"Spareribs"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-950612891-2">
+        <inputEntry id="UnaryTests_0u1z4ho">
+          <text>"Winter"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1euytqf">
+          <text>&lt;= 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_198frve">
+          <text>"Roastbeef"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-950612891-3">
+        <inputEntry id="UnaryTests_1vn9t5c">
+          <text>"Spring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bbbmvu">
+          <text>&lt;= 4</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bewepn">
+          <text>"Dry Aged Gourmet Steak"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-950612891-4">
+        <description>Save money</description>
+        <inputEntry id="UnaryTests_0ogofox">
+          <text>"Spring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0c60gjz">
+          <text>[5..8]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lahvj7">
+          <text>"Steak"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-950612891-5">
+        <description>Less effort</description>
+        <inputEntry id="UnaryTests_1774yme">
+          <text>"Fall", "Winter", "Spring"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01rn17i">
+          <text>&gt; 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jpd7hr">
+          <text>"Stew"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-950612891-6">
+        <description>Hey, why not!?</description>
+        <inputEntry id="UnaryTests_0ifdx8k">
+          <text>"Summer"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0c8ym7l">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08d4mb6">
+          <text>"Light Salad and a nice Steak"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1ewrucr" name="How many guests" />
+  <inputData id="InputData_0lm78os" name="Season" />
+  <decision id="Decision_0c0czjf" name="Beverage">
+    <informationRequirement id="InformationRequirement_00f52v4">
+      <requiredDecision href="#decision" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0h5eexr">
+      <requiredInput href="#InputData_11bpdud" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1vagtaz">
+      <input id="InputClause_0v9vuc8">
+        <inputExpression id="LiteralExpression_0t15qmz" typeRef="string">
+          <text>Dish</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1sqkthe" label="Guest with children">
+        <inputExpression id="LiteralExpression_0i5ar2s" typeRef="boolean">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_09lute8" label="Beverages" name="Beverages" typeRef="string" />
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_11bpdud" name="Guest with children" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_12yncde">
+      <dmndi:DMNShape id="DMNShape_0rvmni0" dmnElementRef="decision">
+        <dc:Bounds height="80" width="180" x="250" y="260" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_07n0l1t" dmnElementRef="InputData_1ewrucr">
+        <dc:Bounds height="45" width="125" x="337" y="457" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_15ysxjr" dmnElementRef="InformationRequirement_1ivqa7x">
+        <di:waypoint x="400" y="457" />
+        <di:waypoint x="370" y="360" />
+        <di:waypoint x="370" y="340" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0yh6o70" dmnElementRef="InputData_0lm78os">
+        <dc:Bounds height="45" width="125" x="187" y="457" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1ccczdt" dmnElementRef="InformationRequirement_0hutcgt">
+        <di:waypoint x="250" y="457" />
+        <di:waypoint x="310" y="360" />
+        <di:waypoint x="310" y="340" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0y44igd" dmnElementRef="Decision_0c0czjf">
+        <dc:Bounds height="80" width="180" x="360" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0kmnred" dmnElementRef="InformationRequirement_00f52v4">
+        <di:waypoint x="340" y="260" />
+        <di:waypoint x="420" y="180" />
+        <di:waypoint x="420" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0gx4tvm" dmnElementRef="InputData_11bpdud">
+        <dc:Bounds height="45" width="125" x="487" y="277" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0x2davj" dmnElementRef="InformationRequirement_0h5eexr">
+        <di:waypoint x="550" y="277" />
+        <di:waypoint x="480" y="180" />
+        <di:waypoint x="480" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
