@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUri: 'http://localhost:5000/',
+  apiUri: 'http://localhost:5001/',
   firebase: {
     apiKey: 'AIzaSyAouDyy92iKkzgDrlZ-7rF6TsZNQ7H5RAU',
     authDomain: 'decision-mining.firebaseapp.com',

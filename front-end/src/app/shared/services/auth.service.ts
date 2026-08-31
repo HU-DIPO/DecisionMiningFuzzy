@@ -13,6 +13,13 @@ import {throwError} from 'rxjs';
 export class AuthService {
   userData: any; // Save logged in user data
 
+  private readonly guestUser: User = {
+    uid: 'guest-user',
+    email: 'guest@decision-mining.local',
+    displayName: 'Guest User',
+    emailVerified: true,
+  };
+
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -31,6 +38,20 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user'));
       }
     });
+  }
+
+  private storeUserSession(user: User) {
+    this.userData = user;
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  EnableGuestAccess() {
+    this.storeUserSession(this.guestUser);
+  }
+
+  GuestSignIn() {
+    this.EnableGuestAccess();
+    this.router.navigate(['home-page']);
   }
 
   // Sign in with email/password

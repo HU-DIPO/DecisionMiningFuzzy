@@ -90,6 +90,21 @@ export class DmnPageComponent implements OnInit {
       body: formData
     });
 
+    if (!response.ok) {
+      let message = `Backend request failed with status ${response.status}`;
+      try {
+        const errorBody = await response.json();
+        if (errorBody?.message) {
+          message = Array.isArray(errorBody.message)
+            ? errorBody.message.join('; ')
+            : errorBody.message;
+        }
+      } catch {
+        // Keep the default status-based message when body is not JSON.
+      }
+      throw new Error(message);
+    }
+
     return response.json();
   }
 
@@ -117,7 +132,7 @@ export class DmnPageComponent implements OnInit {
     this.requestDMN().then(data => {
       this.dmnViewer.importXML(data.xml);
       console.log(data.accuracy);
-    }).catch(_ => alert('500: Something went wrong at our api, please try again.'));
+    }).catch((error) => alert(`API error: ${error.message}`));
   }
 
   // Exports the DMN diagram's XML code
