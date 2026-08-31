@@ -2,18 +2,46 @@
 
 This module contains the endpoint for finding rules in the dataset(s).
 """
+import copy
 import json
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 from xml.etree import ElementTree
 
 import pandas as pd
-import numpy as np
 from flask import request
 from flask_restful import Resource
 
 from decision_mining.api.tools import pipeline as pp
 from decision_mining.regester_models import registered_models
-from decision_mining.core.dmn.dt_normalization import normalize_dt
+from decision_mining.core.dmn.rule import Rule
+
+
+def _paper_unique_rules(rules: List[Rule], wildcard: str = "-") -> List[Rule]:
+    """Create paper-style unique rules without aggressive wildcard expansion.
+
+    For each rule, when a prerequisite is False, all trailing conditions are
+    shown as wildcard (`-`). After that, duplicate rules are removed while
+    preserving first-seen order.
+    """
+    unique_rules: List[Rule] = []
+    seen = set()
+
+    for rule in rules:
+        values = list(rule.cols.values())
+        keys = list(rule.cols.keys())
+        for idx, value in enumerate(values):
+            if str(value).lower() == "false":
+                for trailing_key in keys[idx + 1:]:
+                    rule.cols[trailing_key] = wildcard
+                break
+
+        identity = tuple(list(rule.cols.values()) + [rule.decision])
+        if identity in seen:
+            continue
+        seen.add(identity)
+        unique_rules.append(rule)
+
+    return unique_rules
 
 
 class FindRules(Resource):
@@ -85,18 +113,32 @@ class FindRules(Resource):
         decision_model = registered_models.get_model(model_id)
 
         decision_model.make_models(parsed_data, continuous_cols)
-        rules = decision_model.extract_rules_for_all_models(cols)
+        raw_rules = decision_model.extract_rules_for_all_models(cols)
         scores = decision_model.score_models(parsed_data)
 
-        if normalize_bool:
-            normalized_rules = []
-            for model, rules in zip(decision_model.models, rules):
-                continuous_cols = model.continuous_cols
-                if model.categoricalize_continuous_values:
-                    continuous_cols = np.array([])
-                normalized_rules.append(normalize_dt(rules, continuous_cols))
-            rules = normalized_rules
+        paper_rules = copy.deepcopy(raw_rules)
+        for idx, rules_per_model in enumerate(paper_rules):
+            paper_rules[idx] = _paper_unique_rules(rules_per_model)
 
-        dmn_tree = pp.generate_dmn([decision[-1] for decision in parsed_data], rules)
-        xml_str = ElementTree.tostring(dmn_tree.getroot(), encoding="unicode", method="xml")
-        return {"message": "Success", "xml": xml_str, "accuracy": scores}, 200
+        if normalize_bool:
+            selected_rules = paper_rules
+        else:
+            selected_rules = raw_rules
+
+        raw_dmn_tree = pp.generate_dmn([decision[-1] for decision in parsed_data], raw_rules)
+        paper_dmn_tree = pp.generate_dmn([decision[-1] for decision in parsed_data], paper_rules)
+        selected_dmn_tree = pp.generate_dmn([decision[-1] for decision in parsed_data], selected_rules)
+
+        xml_raw = ElementTree.tostring(raw_dmn_tree.getroot(), encoding="unicode", method="xml")
+        xml_paper = ElementTree.tostring(paper_dmn_tree.getroot(), encoding="unicode", method="xml")
+        xml_selected = ElementTree.tostring(
+            selected_dmn_tree.getroot(), encoding="unicode", method="xml")
+
+        return {
+            "message": "Success",
+            "xml": xml_selected,
+            "xml_raw": xml_raw,
+            "xml_paper": xml_paper,
+            "rules_view": "paper" if normalize_bool else "raw",
+            "accuracy": scores,
+        }, 200

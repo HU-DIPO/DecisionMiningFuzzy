@@ -8,4 +8,8 @@ cd DecisionMiningFuzzy
 docker compose up
 ```
 
-And then go to `localhost:4200` for the frontend and `localhost:5000` for the backend.
+And then go to `localhost:4200` for the frontend and `localhost:5001` for the backend.
+
+The login screen has a button "continue as guest" to bypass the login screen.
+
+The pseudocode of the algorithm can be found in this repository.

@@ -30,10 +30,10 @@ As the name implies, the backend can also be used together with the frontend. It
 git clone https://github.com/HU-DIPO/DecisionMiningFuzzy.git
 cd DecisionMiningFuzzy\\back-end
 docker build -t DMFuzzy/back:v1 .
-docker run -p 5000:5000 DMFuzzy/back:v1
+docker run -p 5001:5001 DMFuzzy/back:v1
 ```
 
-And then go to `localhost:5000`.
+And then go to `localhost:5001`.
 
 ### Running with Flask
 
@@ -43,7 +43,7 @@ Repeat instructions from `Installing as a module`, then:
 flask run
 ```
 
-And then go to `localhost:5000`.
+And then go to `localhost:5001`.
 
 ## Generate the documentation
 

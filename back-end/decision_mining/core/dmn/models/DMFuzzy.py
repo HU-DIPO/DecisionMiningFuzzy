@@ -10,11 +10,11 @@ from decision_mining.core.dmn.rule import Rule
 from decision_mining.core.fuzzy import FuzzyClassifier
 
 TERM_ENCODER = {
-    "nadir": "Lowest",
+    "nadir": "Low",
     "Q1": "Low",
     "median": "Medium",
     "Q3": "High",
-    "zenith": "Highest"
+    "zenith": "High"
 }
 
 
@@ -58,7 +58,7 @@ class DMFuzzy(DecisionModel):
         """Initialize the DecisionModel."""
         parameters = {
             "minimal_gain_ratio": {
-                "value": 0.3,
+                "value": 0.2,
                 "min": 0.0,
                 "max": 0.9,
                 "step": 0.05,
