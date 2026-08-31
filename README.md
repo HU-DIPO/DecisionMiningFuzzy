@@ -3,7 +3,7 @@
 ### Running full application with Docker Compose
 
 ```shell
-git clone https://github.com/HU-DIPO/DecisionMiningFuzzy.git
+git clone --branch guestaccess_patch --single-branch https://github.com/HU-DIPO/DecisionMiningFuzzy.git
 cd DecisionMiningFuzzy
 docker compose up
 ```
