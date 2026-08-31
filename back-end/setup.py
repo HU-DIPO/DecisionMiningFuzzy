@@ -2,7 +2,7 @@ import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-
+#werkzeug to 2.1.2 instead of <3.0
 requirements = ["Flask==2.1.0",
                 "Werkzeug==2.1.2",
                 "Flask-Cors==3.0.10",
