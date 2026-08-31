@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 requirements = ["Flask==2.1.0",
-                "Werkzeug==2.0.3",
+                "Werkzeug<3.0",
                 "Flask-Cors==3.0.10",
                 "flask-restful==0.3.9",
                 "more_itertools==8.12.0",
