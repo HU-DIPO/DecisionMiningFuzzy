@@ -26,18 +26,18 @@ export class SecondPageComponent implements OnInit {
 // Build the "form-box-first" element
 // Contains three radio buttons for selecting "input", "output", "exclude" per column
 // Also with labels
-  buildFirstBox(idx: number): Element {
+  buildFirstBox(idx: number, isDefaultOutput: boolean): Element {
     const firstBox = document.createElement('form');
     firstBox.className = 'form-box-first';
     // Build input button
-    firstBox.appendChild(this.buildRadioButton('input', 'input', true, idx));
+    firstBox.appendChild(this.buildRadioButton('input', 'input', !isDefaultOutput, idx));
     const labelInput = document.createElement('label');
     labelInput.setAttribute('for', 'input' + idx.toString());
     labelInput.innerHTML = 'Input';
     firstBox.appendChild(labelInput);
 
     // Build output
-    firstBox.appendChild(this.buildRadioButton('output', 'output', false, idx));
+    firstBox.appendChild(this.buildRadioButton('output', 'output', isDefaultOutput, idx));
     const labelOutput = document.createElement('label');
     labelOutput.setAttribute('for', 'output' + idx.toString());
     labelOutput.innerHTML = 'Output';
@@ -97,9 +97,10 @@ export class SecondPageComponent implements OnInit {
   buildBoxes(columns: string[], parent: Element): void {
     for (let i = 0; i < columns.length; i++) {
       const colName = columns[i];
+      const isDefaultOutput = i === columns.length - 1;
 
       // build the first box (input/output)
-      parent.appendChild(this.buildFirstBox(i));
+      parent.appendChild(this.buildFirstBox(i, isDefaultOutput));
 
       // build the second box (continue/categoriaal)
       parent.appendChild(this.buildSecondBox(i));
@@ -123,7 +124,7 @@ export class SecondPageComponent implements OnInit {
   // Saves the resultant settings to sessionStorage.
   // sessionStorage('input_types') contains continuous/categorical per column
   // sessionStorage('col_types') contains input/output/exclude per column
-  queryFunc() {
+  queryFunc(): boolean {
     const form = document.querySelector('.form-box');
     const firstPart = form.querySelector('.first-part');
     const firstBoxes = firstPart.querySelectorAll('.form-box-first');
@@ -145,6 +146,7 @@ export class SecondPageComponent implements OnInit {
         if (outputCount > 1) {
           alert('Je mag maar één kolom markeren als output.');
           window.location.reload();
+          return false;
         }
       } else {
         colTypes.push('exclude');
@@ -156,20 +158,33 @@ export class SecondPageComponent implements OnInit {
         inputTypes.push('categoriaal');
       }
     }
+
+    if (outputCount === 0) {
+      alert('Markeer precies één kolom als output.');
+      window.location.reload();
+      return false;
+    }
+
     sessionStorage.setItem('inputTypes', inputTypes.toString());
     sessionStorage.setItem('col_types', colTypes.toString());
+    return true;
   }
 
   // Saves column settings to session storage, then checks if field "name" has been filled out
   // If not, reload page
   // Else, set name and continue to dmn-page
-  myFunction() {
-    this.queryFunc();
+  myFunction(event: Event) {
+    if (!this.queryFunc()) {
+      event.preventDefault();
+      return;
+    }
     const value1 = (document.getElementById('title') as HTMLInputElement).value;
 
     if (value1 === '') {
       alert('Name must be filled out');
+      event.preventDefault();
       location.reload();
+      return;
     }
     sessionStorage.setItem('name', value1);
   }

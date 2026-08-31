@@ -16,7 +16,7 @@ import {HomePageComponent} from './components/home-page/home-page.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+  { path: '', redirectTo: '/home-page', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
   { path: 'register-user', component: SignUpComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: 'profile-page', component: ProfilePageComponent, canActivate: [AuthGuard] },
   { path: 'dmn-page', component: DmnPageComponent, canActivate: [AuthGuard] },
   { path: 'main-page', component: MainPageComponent, canActivate: [AuthGuard] },
-  { path: 'second-page', component: SecondPageComponent, canActivate: [AuthGuard]}
+  { path: 'second-page', component: SecondPageComponent, canActivate: [AuthGuard]},
+  { path: '**', redirectTo: '/home-page' }
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  apiUri: 'http://localhost:5000/',  
-  // apiUri: 'http://inno21-frontend_backend_1:5000/',
+  apiUri: 'http://localhost:5001/',
+  // apiUri: 'http://inno21-frontend_backend_1:5001/',
   firebase: {
     apiKey: 'AIzaSyAouDyy92iKkzgDrlZ-7rF6TsZNQ7H5RAU',
     authDomain: 'decision-mining.firebaseapp.com',
