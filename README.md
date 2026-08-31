@@ -8,7 +8,7 @@ cd DecisionMiningFuzzy
 docker compose up
 ```
 
-###running clean, deleting all possible legacy caches after downloading the git:
+### running clean, deleting all possible legacy caches after downloading the git:
 
 ```shell
 docker compose down --rmi local --remove-orphans
